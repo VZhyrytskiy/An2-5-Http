@@ -8,24 +8,24 @@ import { AuthService } from './../services/auth.service';
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(
-    private authService: AuthService, 
+    private authService: AuthService,
     private router: Router
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log("canActivate Guard is called");
+    console.log('canActivate Guard is called');
     let url: string = state.url;
 
     return this.checkLogin(url);
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log("canActivateChild Guard is called");
+    console.log('canActivateChild Guard is called');
     return this.canActivate(route, state);
   }
 
   canLoad(route: Route): boolean {
-    console.log("CanLoad Guard is activated");
+    console.log('CanLoad Guard is activated');
     let url = `/${route.path}`;
 
     return this.checkLogin(url);
@@ -48,7 +48,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     };
 
     // Navigate to the login page with extras
-    this.router.navigate(['/login'], navigationExtras);
+    this.router.navigate(['login'], navigationExtras);
+
     return false;
   }
 }
